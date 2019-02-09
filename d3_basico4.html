@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> </title>
+		
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>	
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<style>
+			
+			.my_circle{
+				fill: red;
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+		
+		<svg width="80" height="250">
+			<circle class="my_circle" cx="20" cy="100" r="10"></circle>
+		</svg>
+	
+		<script type="text/javascript">
+			
+			var data = [1,2,3,4,5];
+			
+			var scale = d3.scaleLinear()
+				.domain([1,5])
+				.range([0,100]);
+			
+			var svg = d3.select("body").append("svg")
+				.attr("width", 500)
+				.attr("height", 250);
+			
+			/*var rect = svg.append("rect")
+				.attr("x", 50)
+				.attr("y", 50)
+				.attr("width", 20)
+				.attr("height", 10)
+				.attr("fill", "red");*/
+			
+			//
+			svg.selectAll("rect").data(data) //selecction d3 con "data" agregado en él
+				.enter().append("rect")
+				.attr("x", scale)
+				.attr("y", 50)
+				.attr("width", 20)
+				.attr("height", 10)
+				.attr("fill", "blue");
+			
+		</script>
+		
+	</body>
+</html>

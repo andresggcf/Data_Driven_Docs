@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> </title>
+		
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>	
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+		<style>
+			
+			.my_circle{
+				fill: red;
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+	
+		<script type="text/javascript">
+			
+			var scale = d3.scale.linear()
+				.domain([1,5])
+				.range([0,200]);
+			
+			var svg = d3.select("body").append("svg")
+				.attr("width", 250)
+				.attr("height", 250);
+
+			function render(data, color){
+				//selecction d3 con "data" agregado en él
+				var rects = svg.selectAll("rect").data(data);
+			
+			
+				//enter() crea elementos "rect"
+				rects.enter().append("rect")
+					.attr("y", 50)
+					.attr("width", 10)
+					.attr("height", 10);
+				
+				
+				//atributos que se actualizan
+				
+					rects.attr("x", scale)
+					.attr("fill", color);
+				
+				//exit().remove() borra todo y empieza de cero, 
+				//lo ultimo es lo que se muestra
+				rects.exit().remove();
+			}
+			
+			//render([1,2,3], "red");
+			//render([1,2,3,4,5], "blue");
+			
+			setTimeout(function(){render([1,2,2.5], "red");},1000);
+			setTimeout(function(){render([1,2,3,4,5], "blue");},2000);
+			setTimeout(function(){render([1,2], "green");},3000);
+			setTimeout(function(){render([1,2,3], "magenta");},4000);
+			
+		</script>
+		
+	</body>
+</html>
